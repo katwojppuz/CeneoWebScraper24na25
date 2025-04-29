@@ -8,37 +8,41 @@
     <title>Ceneo.pl Web Scraper</title>
 </head>
 <body>
-    <header class="text-center fixed-top">
+    <header class="text-center sticky-top">
         <h1>Ceneo.pl Web Scraper</h1>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-house-fill"></i> Strtona główna</a>
+                            <a class="nav-link" href="{{url_for('index')}}"><i class="bi bi-house-fill"></i> Strona główna</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-cloud-arrow-down-fill"></i>
+                            <a class="nav-link" href="{{url_for('display_form')}}"><i class="bi bi-cloud-arrow-down-fill"></i>
     Ekstrakcja opinii</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-list-stars"></i> Lista produktów</a>
+                            <a class="nav-link" href="{{url_for('products')}}"><i class="bi bi-list-stars"></i> Lista produktów</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-person-lines-fill"></i> O autorze</a>
+                            <a class="nav-link" href="{{url_for('author')}}"><i class="bi bi-person-lines-fill"></i> O autorze</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <section class="container mb-5">
+    <section class="container mt-5 mb-5">
         <div class="row">
-            <h2 class="col mt-3 mb-3 text-center">
+            <h2 class="col text-center">
+                {% block title %}
+                {% endblock %}
             </h2>
         </div>
         <div class="row">
             <div class="col">
+                {% block content %}
+                {% endblock %}
             </div>
         </div>  
     </section>
