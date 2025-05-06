@@ -1,3 +1,5 @@
+import os
+import json
 from app import app
 from flask import render_template, redirect, url_for, request
 
@@ -16,7 +18,18 @@ def display_form():
 
 @app.route('/products')
 def products():
-    return render_template("products.html")
+    products = []
+    try:
+        for filename in os.listdir("./app/data/products"):
+            with open(f"./app/data/products/{filename}", "r", encoding="UTF-8") as jf:
+                try:
+                    products.append(json.load(jf))
+                except json.JSONDecodeError:
+                    continue
+        return render_template("products.html", products=products)
+    except FileNotFoundError:
+        error = "Nie pobrano jeszcze żadnch danych"
+        return render_template("products.html", error=error)
 
 @app.route('/author')
 def author():
